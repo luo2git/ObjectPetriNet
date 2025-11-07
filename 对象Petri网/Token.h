@@ -117,5 +117,5 @@ public:
 	vector<pair<string, shared_ptr<Place>>> process_path;//已处理路径<库所名称，库所对象指针>
 
 	vector<shared_ptr<Place>>next_psble_marking(shared_ptr<Place>CurrentMarking);//寻找下一个可能的标识
-	void update_marking(vector<pair<string, shared_ptr<Device>>> transition_device,vector<pair<string, shared_ptr<Human>>> transition_human);//更新下一个标识
+	void update_marking(vector<pair<string, shared_ptr<Device>>> transition_device,vector<pair<string, shared_ptr<Human>>> transition_human);//更新下一个标识的指针
 }
