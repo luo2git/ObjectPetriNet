@@ -20,9 +20,9 @@ set<string> Petrinet::Get_possible_firable_trans(multimap<string, shared_ptr<Tok
     set<string>possible_firable_trans;
     for (auto itr = m.begin(); itr != m.end(); ++itr) {
         auto& place_name = itr->first;
-        //for (auto post_trans : places[place_name]->post_arcs) {
-        //    possible_firable_trans.emplace(post_trans);
-        //}
+        for (auto post_trans : places[place_name]->post_arcs) {
+            possible_firable_trans.emplace(post_trans);
+        }
     }
     return possible_firable_trans;
 }

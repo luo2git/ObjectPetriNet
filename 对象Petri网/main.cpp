@@ -2,12 +2,13 @@
 #include <chrono>
 #include"Petrinet.h"
 #include"read_json.h"
-using namespace std;
+#include"Process.h"
 
 int main() {
-	read_place_json();
-	read_trans_json();
-	read_tokens_json();
+	Petrinet petrinet;
+	read_place_json(petrinet);
+	read_trans_json(petrinet);
+	read_tokens_json(petrinet);
 	petrinet.dijskstra_search();
 	petrinet.bestpath = petrinet.Createbestpath();
 	return 0;

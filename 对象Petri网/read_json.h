@@ -8,34 +8,36 @@
 #include"Petrinet.h"
 #include<memory>
 #include<tuple>
-Petrinet petrinet;
+
 
 constexpr auto Place_path = "./data/agv_way_place.json";
 constexpr auto Transition_path = "./data/agv_way_trans.json";
 constexpr auto Token_path = "./data/agv_way_token1_4.json";
 
 //读取json文件，初始化库所信息
-inline void read_place_json() {
+inline void read_place_json(Petrinet petrinet) {
     //流文件打开json文件
-    std::ifstream ifs(Place_path);
+    std::ifstream ifs(Place_path);//创建输入文件流对象
     if (!ifs.is_open()) {
         std::cerr << "Failed to open file" << std::endl;
+        return;
     }
     // 读取JSON数据
-    rapidjson::IStreamWrapper isw(ifs);
-    rapidjson::Document doc;
-    doc.ParseStream(isw);
+    rapidjson::IStreamWrapper isw(ifs);//创建IStreamWrapper对象
+    rapidjson::Document doc;//创建Document对象
+    doc.ParseStream(isw);//解析JSON数据
 
     //是否解析成功
     if (doc.HasParseError()) {
         std::cerr << "Failed to parse JSON" << std::endl;
+        return;
     }
     // 遍历每个对象
     for (auto itr1 = doc.MemberBegin(); itr1 != doc.MemberEnd(); ++itr1) {
-        auto place_ptr = make_shared<Place>();
-        place_ptr->place_name = itr1->name.GetString();
-        place_ptr->capacity = itr1->value["capacity"].GetInt();
-        place_ptr->delay = itr1->value["delay"].GetInt();
+        auto place_ptr = make_shared<Place>(); //生成Place对象，创建Place智能指针
+        place_ptr->place_name = itr1->name.GetString();//获取库所名称
+        place_ptr->capacity = itr1->value["capacity"].GetInt();//获取capacity的值
+        place_ptr->delay = itr1->value["delay"].GetInt(); //获取delay的值
         for (int i = 0; i < itr1->value["pre_arcs"].GetArray().Size(); i++) {
             place_ptr->pre_arcs.emplace_back(itr1->value["pre_arcs"][i].GetString());
         }
@@ -46,7 +48,7 @@ inline void read_place_json() {
     }
 }
 //读取json文件，初始化变迁信息
-inline void read_trans_json() {
+inline void read_trans_json(Petrinet petrinet) {
     //流文件打开json文件
     std::ifstream ifs(Transition_path);
     if (!ifs.is_open()) {
@@ -87,7 +89,7 @@ inline void read_trans_json() {
     }
 }
 //读取json文件，初始化变迁信息
-inline void read_tokens_json() {
+inline void read_tokens_json(Petrinet petrinet) {
     //流文件打开json文件
     std::ifstream ifs(Token_path);
     if (!ifs.is_open()) {
