@@ -24,6 +24,9 @@
     <ClCompile Include="Token.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Petrinet.h">
@@ -39,6 +42,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Transition.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Petrinet.cpp" />
+    <ClCompile Include="Process.cpp" />
     <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Petrinet.h" />
     <ClInclude Include="Place.h" />
+    <ClInclude Include="Process.h" />
     <ClInclude Include="read_json.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Transition.h" />
